@@ -1,501 +1,885 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VALOR — Roblox Rivals Clan</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+    <title>VALØR Rivals</title>
 
-html {
-    scroll-behavior: smooth;
-}
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #08060d;
-    color: white;
-    overflow-x: hidden;
-}
+        html {
+            scroll-behavior: smooth;
+        }
 
-body::before {
-    content: "";
-    position: fixed;
-    width: 500px;
-    height: 500px;
-    background: #7c3cff;
-    filter: blur(180px);
-    opacity: 0.15;
-    top: -150px;
-    left: -150px;
-    pointer-events: none;
-}
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #07050b;
+            color: white;
+            overflow-x: hidden;
+        }
 
-body::after {
-    content: "";
-    position: fixed;
-    width: 450px;
-    height: 450px;
-    background: #a855f7;
-    filter: blur(180px);
-    opacity: 0.12;
-    bottom: -150px;
-    right: -150px;
-    pointer-events: none;
-}
+        /* PURPLE BACKGROUND GLOW */
+        body::before {
+            content: "";
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            top: -250px;
+            left: -200px;
+            background: #8b3dff;
+            filter: blur(180px);
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: -2;
+        }
 
-nav {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: 70px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 7%;
-    background: rgba(8, 6, 13, 0.8);
-    backdrop-filter: blur(15px);
-    border-bottom: 1px solid rgba(168, 85, 247, 0.15);
-    z-index: 100;
-}
+        body::after {
+            content: "";
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            bottom: -250px;
+            right: -200px;
+            background: #a855f7;
+            filter: blur(180px);
+            opacity: 0.12;
+            pointer-events: none;
+            z-index: -2;
+        }
 
-.logo {
-    font-size: 25px;
-    font-weight: 900;
-    letter-spacing: 4px;
-    color: #c084fc;
-}
+        /* NAVBAR */
 
-.nav-links {
-    display: flex;
-    gap: 30px;
-}
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 72px;
 
-.nav-links a {
-    color: #aaa;
-    text-decoration: none;
-    font-size: 14px;
-    transition: 0.3s;
-}
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
 
-.nav-links a:hover {
-    color: #c084fc;
-}
+            padding: 0 7%;
 
-.hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 100px 20px 50px;
-    position: relative;
-}
+            background: rgba(5, 4, 8, 0.75);
+            backdrop-filter: blur(18px);
 
-.hero-content {
-    max-width: 850px;
-}
+            border-bottom: 1px solid rgba(168, 85, 247, 0.18);
 
-.badge {
-    display: inline-block;
-    padding: 8px 18px;
-    border: 1px solid rgba(192, 132, 252, 0.4);
-    border-radius: 30px;
-    color: #c084fc;
-    background: rgba(124, 58, 237, 0.08);
-    font-size: 12px;
-    letter-spacing: 2px;
-    margin-bottom: 25px;
-}
+            z-index: 1000;
+        }
 
-.hero h1 {
-    font-size: clamp(70px, 14vw, 150px);
-    line-height: 0.85;
-    letter-spacing: -7px;
-    font-weight: 1000;
-    background: linear-gradient(135deg, #ffffff, #c084fc, #7c3aed);
-    -webkit-background-clip: text;
-    color: transparent;
-    margin-bottom: 25px;
-}
+        .logo {
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: 4px;
+            color: #c084fc;
+        }
 
-.hero p {
-    color: #999;
-    font-size: 18px;
-    max-width: 600px;
-    margin: auto;
-    line-height: 1.7;
-}
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
 
-.buttons {
-    margin-top: 35px;
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    flex-wrap: wrap;
-}
+        .nav-links a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.25s;
+        }
 
-.btn {
-    padding: 15px 28px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: 0.3s;
-}
+        .nav-links a:hover {
+            color: #c084fc;
+        }
 
-.primary {
-    background: #7c3aed;
-    color: white;
-    box-shadow: 0 0 30px rgba(124, 58, 237, 0.3);
-}
+        /* HERO */
 
-.primary:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 0 45px rgba(124, 58, 237, 0.5);
-}
+        .hero {
+            min-height: 100vh;
 
-.secondary {
-    border: 1px solid #333;
-    color: #ddd;
-    background: rgba(255,255,255,0.03);
-}
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
-.secondary:hover {
-    border-color: #7c3aed;
-    color: #c084fc;
-}
+            text-align: center;
 
-section {
-    padding: 100px 8%;
-    position: relative;
-}
+            padding: 120px 20px 70px;
 
-.section-title {
-    text-align: center;
-    margin-bottom: 55px;
-}
+            position: relative;
 
-.section-title span {
-    color: #a855f7;
-    font-size: 13px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-}
+            background:
+                linear-gradient(
+                    rgba(5, 4, 8, 0.72),
+                    rgba(5, 4, 8, 0.92)
+                ),
+                url("https://www.roblox.com/asset-thumbnail/image?assetId=17625359962&width=1280&height=720&format=png");
 
-.section-title h2 {
-    font-size: 42px;
-    margin-top: 10px;
-}
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
 
-.about {
-    max-width: 900px;
-    margin: auto;
-    text-align: center;
-    color: #999;
-    font-size: 17px;
-    line-height: 1.8;
-}
+        .hero-content {
+            max-width: 950px;
+            position: relative;
+            z-index: 2;
+        }
 
-.stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    max-width: 900px;
-    margin: 50px auto 0;
-}
+        .badge {
+            display: inline-block;
 
-.stat {
-    padding: 30px;
-    background: rgba(255,255,255,0.025);
-    border: 1px solid #222;
-    border-radius: 12px;
-    text-align: center;
-}
+            padding: 9px 20px;
 
-.stat h3 {
-    color: #c084fc;
-    font-size: 35px;
-}
+            border: 1px solid rgba(192, 132, 252, 0.45);
+            border-radius: 30px;
 
-.stat p {
-    color: #777;
-    margin-top: 8px;
-}
+            color: #c084fc;
+            background: rgba(124, 58, 237, 0.12);
 
-.members {
-    max-width: 1000px;
-    margin: auto;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
+            font-size: 12px;
+            letter-spacing: 4px;
 
-.member {
-    padding: 25px;
-    background: linear-gradient(145deg, rgba(124,58,237,0.08), rgba(255,255,255,0.02));
-    border: 1px solid #25202d;
-    border-radius: 12px;
-    transition: 0.3s;
-}
+            margin-bottom: 28px;
+        }
 
-.member:hover {
-    transform: translateY(-5px);
-    border-color: #7c3aed;
-}
+        .hero h1 {
+            font-size: clamp(80px, 16vw, 170px);
 
-.member-icon {
-    width: 50px;
-    height: 50px;
-    border-radius: 10px;
-    background: #7c3aed;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    margin-bottom: 15px;
-}
+            line-height: 0.82;
 
-.member h3 {
-    font-size: 19px;
-}
+            letter-spacing: -8px;
 
-.member p {
-    color: #a855f7;
-    margin-top: 5px;
-    font-size: 13px;
-}
+            font-weight: 1000;
 
-.rules {
-    max-width: 850px;
-    margin: auto;
-}
+            background:
+                linear-gradient(
+                    135deg,
+                    #ffffff,
+                    #e9d5ff,
+                    #a855f7,
+                    #7c3aed
+                );
 
-.rule {
-    padding: 22px;
-    margin-bottom: 12px;
-    background: rgba(255,255,255,0.025);
-    border: 1px solid #222;
-    border-radius: 10px;
-    color: #aaa;
-}
+            -webkit-background-clip: text;
+            background-clip: text;
 
-.rule strong {
-    color: white;
-    margin-right: 8px;
-}
+            color: transparent;
 
-.join {
-    text-align: center;
-    max-width: 850px;
-    margin: auto;
-    padding: 70px 30px;
-    border: 1px solid rgba(124,58,237,0.3);
-    border-radius: 20px;
-    background: radial-gradient(circle at center, rgba(124,58,237,0.12), transparent 70%);
-}
+            margin-bottom: 30px;
 
-.join h2 {
-    font-size: 45px;
-    margin-bottom: 15px;
-}
+            text-shadow: 0 0 50px rgba(139, 92, 246, 0.25);
+        }
 
-.join p {
-    color: #888;
-    margin-bottom: 30px;
-}
+        .hero p {
+            color: #b0aab8;
 
-footer {
-    text-align: center;
-    padding: 40px;
-    border-top: 1px solid #18151d;
-    color: #555;
-    font-size: 13px;
-}
+            font-size: 18px;
 
-footer span {
-    color: #a855f7;
-}
+            line-height: 1.7;
 
-@media (max-width: 750px) {
-    .nav-links {
-        display: none;
-    }
+            max-width: 650px;
 
-    .stats,
-    .members {
-        grid-template-columns: 1fr;
-    }
+            margin: auto;
+        }
 
-    .hero h1 {
-        letter-spacing: -3px;
-    }
+        /* BUTTONS */
 
-    section {
-        padding: 75px 6%;
-    }
-}
-</style>
+        .buttons {
+            margin-top: 38px;
+
+            display: flex;
+            justify-content: center;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+
+            padding: 16px 32px;
+
+            border-radius: 9px;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            transition: 0.25s;
+        }
+
+        .primary {
+            background: #7c3aed;
+
+            color: white;
+
+            box-shadow:
+                0 0 30px rgba(124, 58, 237, 0.35);
+        }
+
+        .primary:hover {
+            transform: translateY(-4px);
+
+            box-shadow:
+                0 0 50px rgba(124, 58, 237, 0.65);
+        }
+
+        .secondary {
+            color: #ddd;
+
+            border: 1px solid #30283b;
+
+            background: rgba(255,255,255,0.04);
+        }
+
+        .secondary:hover {
+            border-color: #8b5cf6;
+            color: #c084fc;
+        }
+
+        /* SECTIONS */
+
+        section {
+            padding: 110px 8%;
+
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+
+            margin-bottom: 55px;
+        }
+
+        .section-title span {
+            color: #a855f7;
+
+            font-size: 12px;
+
+            letter-spacing: 4px;
+
+            text-transform: uppercase;
+        }
+
+        .section-title h2 {
+            font-size: 44px;
+
+            margin-top: 10px;
+        }
+
+        /* ABOUT */
+
+        .about {
+            max-width: 850px;
+
+            margin: auto;
+
+            text-align: center;
+
+            color: #999;
+
+            font-size: 17px;
+
+            line-height: 1.8;
+        }
+
+        .stats {
+            max-width: 900px;
+
+            margin: 50px auto 0;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+        }
+
+        .stat {
+            padding: 32px;
+
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(124,58,237,0.08),
+                    rgba(255,255,255,0.02)
+                );
+
+            border: 1px solid #211c29;
+
+            border-radius: 14px;
+
+            transition: 0.25s;
+        }
+
+        .stat:hover {
+            border-color: #7c3aed;
+
+            transform: translateY(-5px);
+        }
+
+        .stat h3 {
+            color: #c084fc;
+
+            font-size: 30px;
+        }
+
+        .stat p {
+            color: #666;
+
+            margin-top: 8px;
+        }
+
+        /* MEMBERS */
+
+        .members {
+            max-width: 1000px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+        }
+
+        .member {
+            padding: 28px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(124,58,237,0.10),
+                    rgba(255,255,255,0.02)
+                );
+
+            border: 1px solid #25202d;
+
+            border-radius: 14px;
+
+            transition: 0.25s;
+        }
+
+        .member:hover {
+            transform: translateY(-6px);
+
+            border-color: #7c3aed;
+
+            box-shadow:
+                0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .member-icon {
+            width: 55px;
+            height: 55px;
+
+            border-radius: 12px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #9333ea,
+                    #6d28d9
+                );
+
+            font-weight: 900;
+
+            margin-bottom: 18px;
+
+            box-shadow:
+                0 0 25px rgba(124,58,237,0.25);
+        }
+
+        .member h3 {
+            font-size: 19px;
+        }
+
+        .member p {
+            color: #a855f7;
+
+            margin-top: 6px;
+
+            font-size: 12px;
+
+            letter-spacing: 1px;
+        }
+
+        /* RULES */
+
+        .rules {
+            max-width: 850px;
+
+            margin: auto;
+        }
+
+        .rule {
+            padding: 22px;
+
+            margin-bottom: 12px;
+
+            background:
+                rgba(255,255,255,0.025);
+
+            border: 1px solid #211c29;
+
+            border-radius: 10px;
+
+            color: #aaa;
+
+            transition: 0.2s;
+        }
+
+        .rule:hover {
+            border-color: #7c3aed;
+
+            transform: translateX(5px);
+        }
+
+        .rule strong {
+            color: #c084fc;
+
+            margin-right: 10px;
+        }
+
+        /* JOIN */
+
+        .join {
+            max-width: 850px;
+
+            margin: auto;
+
+            padding: 85px 30px;
+
+            text-align: center;
+
+            border: 1px solid rgba(124,58,237,0.35);
+
+            border-radius: 20px;
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(124,58,237,0.15),
+                    transparent 70%
+                );
+        }
+
+        .join h2 {
+            font-size: 46px;
+
+            margin-bottom: 15px;
+        }
+
+        .join p {
+            color: #888;
+
+            margin-bottom: 30px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            padding: 40px;
+
+            text-align: center;
+
+            color: #555;
+
+            border-top:
+                1px solid #18151d;
+
+            font-size: 13px;
+        }
+
+        footer span {
+            color: #a855f7;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 750px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .stats,
+            .members {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                letter-spacing: -4px;
+            }
+
+            section {
+                padding: 80px 6%;
+            }
+
+            .join h2 {
+                font-size: 36px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<nav>
-    <div class="logo">VALOR</div>
+    <!-- NAVIGATION -->
 
-    <div class="nav-links">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#members">Members</a>
-        <a href="#rules">Rules</a>
-        <a href="#join">Join</a>
-    </div>
-</nav>
+    <nav>
 
-<section class="hero" id="home">
-    <div class="hero-content">
-        <div class="badge">ROBLOX RIVALS CLAN</div>
+        <div class="logo">
+            VALØR
+        </div>
 
-        <h1>VALOR</h1>
+        <div class="nav-links">
 
-        <p>
-            Built for players who want to compete, improve,
-            and dominate. Welcome to VALOR.
-        </p>
+            <a href="#home">
+                Home
+            </a>
 
-        <div class="buttons">
-            <a class="btn primary"
-               href="https://discord.gg/xractgTxg"
-               target="_blank">
+            <a href="#about">
+                About
+            </a>
+
+            <a href="#members">
+                Members
+            </a>
+
+            <a href="#rules">
+                Rules
+            </a>
+
+            <a href="#join">
+                Join
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- HERO -->
+
+    <section
+        class="hero"
+        id="home"
+    >
+
+        <div class="hero-content">
+
+            <div class="badge">
+                ROBLOX RIVALS CLAN
+            </div>
+
+            <h1>
+                VALØR
+            </h1>
+
+            <p>
+                A competitive Roblox RIVALS clan built
+                around skill, teamwork, competition,
+                and becoming better every match.
+            </p>
+
+            <div class="buttons">
+
+                <a
+                    class="btn primary"
+                    href="https://discord.gg/xractgTxg"
+                    target="_blank"
+                >
+                    JOIN DISCORD
+                </a>
+
+                <a
+                    class="btn secondary"
+                    href="#about"
+                >
+                    EXPLORE VALØR
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+
+    <section id="about">
+
+        <div class="section-title">
+
+            <span>
+                WHO WE ARE
+            </span>
+
+            <h2>
+                ABOUT VALØR
+            </h2>
+
+        </div>
+
+        <div class="about">
+
+            VALØR is a Roblox RIVALS clan focused on
+            competitive gameplay, teamwork, improvement,
+            and building a strong community of players.
+
+            Whether you're here to compete, improve,
+            or meet other players, VALØR is the place
+            to push yourself further.
+
+        </div>
+
+        <div class="stats">
+
+            <div class="stat">
+
+                <h3>
+                    RIVALS
+                </h3>
+
+                <p>
+                    Main Game
+                </p>
+
+            </div>
+
+            <div class="stat">
+
+                <h3>
+                    VALØR
+                </h3>
+
+                <p>
+                    Clan
+                </p>
+
+            </div>
+
+            <div class="stat">
+
+                <h3>
+                    24/7
+                </h3>
+
+                <p>
+                    Community
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- MEMBERS -->
+
+    <section id="members">
+
+        <div class="section-title">
+
+            <span>
+                THE TEAM
+            </span>
+
+            <h2>
+                MEMBERS
+            </h2>
+
+        </div>
+
+        <div class="members">
+
+            <div class="member">
+
+                <div class="member-icon">
+                    O
+                </div>
+
+                <h3>
+                    Owner
+                </h3>
+
+                <p>
+                    OWNER
+                </p>
+
+            </div>
+
+
+            <div class="member">
+
+                <div class="member-icon">
+                    C
+                </div>
+
+                <h3>
+                    Coming Soon
+                </h3>
+
+                <p>
+                    CO-OWNER
+                </p>
+
+            </div>
+
+
+            <div class="member">
+
+                <div class="member-icon">
+                    M
+                </div>
+
+                <h3>
+                    Coming Soon
+                </h3>
+
+                <p>
+                    MEMBER
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- RULES -->
+
+    <section id="rules">
+
+        <div class="section-title">
+
+            <span>
+                OUR STANDARDS
+            </span>
+
+            <h2>
+                RULES
+            </h2>
+
+        </div>
+
+        <div class="rules">
+
+            <div class="rule">
+
+                <strong>
+                    01.
+                </strong>
+
+                Respect everyone in the VALØR community.
+
+            </div>
+
+            <div class="rule">
+
+                <strong>
+                    02.
+                </strong>
+
+                No cheating, exploiting, or unfair gameplay.
+
+            </div>
+
+            <div class="rule">
+
+                <strong>
+                    03.
+                </strong>
+
+                No unnecessary drama or toxicity.
+
+            </div>
+
+            <div class="rule">
+
+                <strong>
+                    04.
+                </strong>
+
+                Represent VALØR properly.
+
+            </div>
+
+            <div class="rule">
+
+                <strong>
+                    05.
+                </strong>
+
+                Have fun and help the clan grow.
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- JOIN -->
+
+    <section id="join">
+
+        <div class="join">
+
+            <h2>
+                JOIN VALØR
+            </h2>
+
+            <p>
+                Want to become part of the clan?
+                Join our Discord and meet the community.
+            </p>
+
+            <a
+                class="btn primary"
+                href="https://discord.gg/xractgTxg"
+                target="_blank"
+            >
                 JOIN DISCORD
             </a>
 
-            <a class="btn secondary" href="#about">
-                LEARN MORE
-            </a>
-        </div>
-    </div>
-</section>
-
-<section id="about">
-    <div class="section-title">
-        <span>Who We Are</span>
-        <h2>ABOUT VALOR</h2>
-    </div>
-
-    <div class="about">
-        VALOR is a Roblox Rivals clan focused on competitive
-        gameplay, teamwork, improvement, and building a strong
-        community. Whether you're here to compete or improve,
-        there's a place for you in VALOR.
-    </div>
-
-    <div class="stats">
-        <div class="stat">
-            <h3>VALOR</h3>
-            <p>Clan</p>
         </div>
 
-        <div class="stat">
-            <h3>RIVALS</h3>
-            <p>Main Game</p>
-        </div>
+    </section>
 
-        <div class="stat">
-            <h3>24/7</h3>
-            <p>Community</p>
-        </div>
-    </div>
-</section>
 
-<section id="members">
-    <div class="section-title">
-        <span>The Team</span>
-        <h2>MEMBERS</h2>
-    </div>
+    <!-- FOOTER -->
 
-    <div class="members">
+    <footer>
 
-        <div class="member">
-            <div class="member-icon">O</div>
-            <h3>Owner</h3>
-            <p>OWNER</p>
-        </div>
+        © 2026
+        <span>
+            VALØR
+        </span>
+        — Roblox RIVALS Clan
 
-        <div class="member">
-            <div class="member-icon">C</div>
-            <h3>Coming Soon</h3>
-            <p>CO-OWNER</p>
-        </div>
-
-        <div class="member">
-            <div class="member-icon">M</div>
-            <h3>Coming Soon</h3>
-            <p>MEMBER</p>
-        </div>
-
-    </div>
-</section>
-
-<section id="rules">
-    <div class="section-title">
-        <span>Our Standards</span>
-        <h2>RULES</h2>
-    </div>
-
-    <div class="rules">
-
-        <div class="rule">
-            <strong>01.</strong>
-            Respect everyone in the community.
-        </div>
-
-        <div class="rule">
-            <strong>02.</strong>
-            No cheating, exploiting, or unfair gameplay.
-        </div>
-
-        <div class="rule">
-            <strong>03.</strong>
-            Don't spam or cause unnecessary drama.
-        </div>
-
-        <div class="rule">
-            <strong>04.</strong>
-            Represent VALOR properly.
-        </div>
-
-        <div class="rule">
-            <strong>05.</strong>
-            Have fun and help the clan grow.
-        </div>
-
-    </div>
-</section>
-
-<section id="join">
-    <div class="join">
-        <h2>READY TO JOIN?</h2>
-
-        <p>
-            Join the VALOR Discord and become part of the community.
-        </p>
-
-        <a class="btn primary"
-           href="https://discord.gg/xractgTxg"
-           target="_blank">
-            JOIN VALOR
-        </a>
-    </div>
-</section>
-
-<footer>
-    © 2026 <span>VALOR</span>. Roblox Rivals Clan.
-</footer>
+    </footer>
 
 </body>
 </html>
