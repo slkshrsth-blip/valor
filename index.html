@@ -1,885 +1,1025 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>VALØR Rivals</title>
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #07050b;
-            color: white;
-            overflow-x: hidden;
-        }
-
-        /* PURPLE BACKGROUND GLOW */
-        body::before {
-            content: "";
-            position: fixed;
-            width: 600px;
-            height: 600px;
-            top: -250px;
-            left: -200px;
-            background: #8b3dff;
-            filter: blur(180px);
-            opacity: 0.15;
-            pointer-events: none;
-            z-index: -2;
-        }
-
-        body::after {
-            content: "";
-            position: fixed;
-            width: 500px;
-            height: 500px;
-            bottom: -250px;
-            right: -200px;
-            background: #a855f7;
-            filter: blur(180px);
-            opacity: 0.12;
-            pointer-events: none;
-            z-index: -2;
-        }
-
-        /* NAVBAR */
-
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 72px;
-
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            padding: 0 7%;
-
-            background: rgba(5, 4, 8, 0.75);
-            backdrop-filter: blur(18px);
-
-            border-bottom: 1px solid rgba(168, 85, 247, 0.18);
-
-            z-index: 1000;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: 900;
-            letter-spacing: 4px;
-            color: #c084fc;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            color: #aaa;
-            text-decoration: none;
-            font-size: 14px;
-            transition: 0.25s;
-        }
-
-        .nav-links a:hover {
-            color: #c084fc;
-        }
-
-        /* HERO */
-
-        .hero {
-            min-height: 100vh;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            text-align: center;
-
-            padding: 120px 20px 70px;
-
-            position: relative;
-
-            background:
-                linear-gradient(
-                    rgba(5, 4, 8, 0.72),
-                    rgba(5, 4, 8, 0.92)
-                ),
-                url("https://www.roblox.com/asset-thumbnail/image?assetId=17625359962&width=1280&height=720&format=png");
-
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
-
-        .hero-content {
-            max-width: 950px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .badge {
-            display: inline-block;
-
-            padding: 9px 20px;
-
-            border: 1px solid rgba(192, 132, 252, 0.45);
-            border-radius: 30px;
-
-            color: #c084fc;
-            background: rgba(124, 58, 237, 0.12);
-
-            font-size: 12px;
-            letter-spacing: 4px;
-
-            margin-bottom: 28px;
-        }
-
-        .hero h1 {
-            font-size: clamp(80px, 16vw, 170px);
-
-            line-height: 0.82;
-
-            letter-spacing: -8px;
-
-            font-weight: 1000;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #ffffff,
-                    #e9d5ff,
-                    #a855f7,
-                    #7c3aed
-                );
-
-            -webkit-background-clip: text;
-            background-clip: text;
-
-            color: transparent;
-
-            margin-bottom: 30px;
-
-            text-shadow: 0 0 50px rgba(139, 92, 246, 0.25);
-        }
-
-        .hero p {
-            color: #b0aab8;
-
-            font-size: 18px;
-
-            line-height: 1.7;
-
-            max-width: 650px;
-
-            margin: auto;
-        }
-
-        /* BUTTONS */
-
-        .buttons {
-            margin-top: 38px;
-
-            display: flex;
-            justify-content: center;
-
-            gap: 15px;
-
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            display: inline-block;
-
-            padding: 16px 32px;
-
-            border-radius: 9px;
-
-            text-decoration: none;
-
-            font-weight: bold;
-
-            transition: 0.25s;
-        }
-
-        .primary {
-            background: #7c3aed;
-
-            color: white;
-
-            box-shadow:
-                0 0 30px rgba(124, 58, 237, 0.35);
-        }
-
-        .primary:hover {
-            transform: translateY(-4px);
-
-            box-shadow:
-                0 0 50px rgba(124, 58, 237, 0.65);
-        }
-
-        .secondary {
-            color: #ddd;
-
-            border: 1px solid #30283b;
-
-            background: rgba(255,255,255,0.04);
-        }
-
-        .secondary:hover {
-            border-color: #8b5cf6;
-            color: #c084fc;
-        }
-
-        /* SECTIONS */
-
-        section {
-            padding: 110px 8%;
-
-            position: relative;
-        }
-
-        .section-title {
-            text-align: center;
-
-            margin-bottom: 55px;
-        }
-
-        .section-title span {
-            color: #a855f7;
-
-            font-size: 12px;
-
-            letter-spacing: 4px;
-
-            text-transform: uppercase;
-        }
-
-        .section-title h2 {
-            font-size: 44px;
-
-            margin-top: 10px;
-        }
-
-        /* ABOUT */
-
-        .about {
-            max-width: 850px;
-
-            margin: auto;
-
-            text-align: center;
-
-            color: #999;
-
-            font-size: 17px;
-
-            line-height: 1.8;
-        }
-
-        .stats {
-            max-width: 900px;
-
-            margin: 50px auto 0;
-
-            display: grid;
-
-            grid-template-columns:
-                repeat(3, 1fr);
-
-            gap: 20px;
-        }
-
-        .stat {
-            padding: 32px;
-
-            text-align: center;
-
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(124,58,237,0.08),
-                    rgba(255,255,255,0.02)
-                );
-
-            border: 1px solid #211c29;
-
-            border-radius: 14px;
-
-            transition: 0.25s;
-        }
-
-        .stat:hover {
-            border-color: #7c3aed;
-
-            transform: translateY(-5px);
-        }
-
-        .stat h3 {
-            color: #c084fc;
-
-            font-size: 30px;
-        }
-
-        .stat p {
-            color: #666;
-
-            margin-top: 8px;
-        }
-
-        /* MEMBERS */
-
-        .members {
-            max-width: 1000px;
-
-            margin: auto;
-
-            display: grid;
-
-            grid-template-columns:
-                repeat(3, 1fr);
-
-            gap: 20px;
-        }
-
-        .member {
-            padding: 28px;
-
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(124,58,237,0.10),
-                    rgba(255,255,255,0.02)
-                );
-
-            border: 1px solid #25202d;
-
-            border-radius: 14px;
-
-            transition: 0.25s;
-        }
-
-        .member:hover {
-            transform: translateY(-6px);
-
-            border-color: #7c3aed;
-
-            box-shadow:
-                0 10px 40px rgba(0,0,0,0.3);
-        }
-
-        .member-icon {
-            width: 55px;
-            height: 55px;
-
-            border-radius: 12px;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #9333ea,
-                    #6d28d9
-                );
-
-            font-weight: 900;
-
-            margin-bottom: 18px;
-
-            box-shadow:
-                0 0 25px rgba(124,58,237,0.25);
-        }
-
-        .member h3 {
-            font-size: 19px;
-        }
-
-        .member p {
-            color: #a855f7;
-
-            margin-top: 6px;
-
-            font-size: 12px;
-
-            letter-spacing: 1px;
-        }
-
-        /* RULES */
-
-        .rules {
-            max-width: 850px;
-
-            margin: auto;
-        }
-
-        .rule {
-            padding: 22px;
-
-            margin-bottom: 12px;
-
-            background:
-                rgba(255,255,255,0.025);
-
-            border: 1px solid #211c29;
-
-            border-radius: 10px;
-
-            color: #aaa;
-
-            transition: 0.2s;
-        }
-
-        .rule:hover {
-            border-color: #7c3aed;
-
-            transform: translateX(5px);
-        }
-
-        .rule strong {
-            color: #c084fc;
-
-            margin-right: 10px;
-        }
-
-        /* JOIN */
-
-        .join {
-            max-width: 850px;
-
-            margin: auto;
-
-            padding: 85px 30px;
-
-            text-align: center;
-
-            border: 1px solid rgba(124,58,237,0.35);
-
-            border-radius: 20px;
-
-            background:
-                radial-gradient(
-                    circle at center,
-                    rgba(124,58,237,0.15),
-                    transparent 70%
-                );
-        }
-
-        .join h2 {
-            font-size: 46px;
-
-            margin-bottom: 15px;
-        }
-
-        .join p {
-            color: #888;
-
-            margin-bottom: 30px;
-        }
-
-        /* FOOTER */
-
-        footer {
-            padding: 40px;
-
-            text-align: center;
-
-            color: #555;
-
-            border-top:
-                1px solid #18151d;
-
-            font-size: 13px;
-        }
-
-        footer span {
-            color: #a855f7;
-        }
-
-        /* MOBILE */
-
-        @media (max-width: 750px) {
-
-            .nav-links {
-                display: none;
-            }
-
-            .stats,
-            .members {
-                grid-template-columns: 1fr;
-            }
-
-            .hero h1 {
-                letter-spacing: -4px;
-            }
-
-            section {
-                padding: 80px 6%;
-            }
-
-            .join h2 {
-                font-size: 36px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VALØR Rivals</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+:root {
+    --purple: #8b5cf6;
+    --bright: #c084fc;
+    --dark: #05030a;
+    --card: rgba(255,255,255,.045);
+    --border: rgba(255,255,255,.09);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Inter, Arial, sans-serif;
+    background: var(--dark);
+    color: white;
+    overflow-x: hidden;
+}
+
+/* ===== BACKGROUND ===== */
+
+.bg {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -5;
+    overflow: hidden;
+}
+
+.glow {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: #7c3aed;
+    filter: blur(180px);
+    opacity: .15;
+}
+
+.glow.one {
+    top: -250px;
+    left: -150px;
+}
+
+.glow.two {
+    right: -250px;
+    bottom: -250px;
+    background: #a855f7;
+}
+
+.grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(139,92,246,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(139,92,246,.035) 1px, transparent 1px);
+    background-size: 70px 70px;
+    mask-image: linear-gradient(to bottom, black, transparent);
+}
+
+/* ===== NAV ===== */
+
+nav {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(1100px, 92%);
+    height: 64px;
+    padding: 0 22px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: rgba(10,7,16,.65);
+    backdrop-filter: blur(20px);
+
+    border: 1px solid var(--border);
+    border-radius: 14px;
+
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: 5px;
+    color: white;
+}
+
+.logo span {
+    color: var(--bright);
+}
+
+.navlinks {
+    display: flex;
+    gap: 25px;
+}
+
+.navlinks a {
+    text-decoration: none;
+    color: #999;
+    font-size: 12px;
+    font-weight: 700;
+    transition: .25s;
+}
+
+.navlinks a:hover {
+    color: white;
+}
+
+.nav-discord {
+    text-decoration: none;
+    color: white;
+    background: #7c3aed;
+    padding: 10px 17px;
+    border-radius: 7px;
+    font-size: 11px;
+    font-weight: 800;
+    transition: .25s;
+}
+
+.nav-discord:hover {
+    background: #9333ea;
+    box-shadow: 0 0 25px rgba(139,92,246,.5);
+}
+
+/* ===== HERO ===== */
+
+.hero {
+    min-height: 100vh;
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 150px 20px 80px;
+
+    overflow: hidden;
+}
+
+.hero-image {
+    position: absolute;
+    inset: 0;
+    z-index: -3;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(5,3,10,.25),
+            #05030a 95%
+        ),
+        url("https://www.roblox.com/asset-thumbnail/image?assetId=17625359962&width=1280&height=720&format=png");
+
+    background-size: cover;
+    background-position: center;
+
+    filter: saturate(.8);
+    transform: scale(1.05);
+
+    animation: slowZoom 12s ease-in-out infinite alternate;
+}
+
+@keyframes slowZoom {
+    from { transform: scale(1.05); }
+    to { transform: scale(1.12); }
+}
+
+.hero-content {
+    max-width: 900px;
+    animation: enter 1s ease;
+}
+
+@keyframes enter {
+    from {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+
+    color: #d8b4fe;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 3px;
+
+    padding: 9px 15px;
+
+    border: 1px solid rgba(192,132,252,.25);
+    background: rgba(124,58,237,.08);
+    border-radius: 100px;
+
+    margin-bottom: 28px;
+}
+
+.dot {
+    width: 6px;
+    height: 6px;
+    background: #a855f7;
+    border-radius: 50%;
+    box-shadow: 0 0 12px #a855f7;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    50% {
+        opacity: .3;
+        transform: scale(.7);
+    }
+}
+
+.hero h1 {
+    font-size: clamp(80px, 15vw, 175px);
+    line-height: .78;
+    letter-spacing: -10px;
+    font-weight: 900;
+
+    background: linear-gradient(
+        120deg,
+        white 15%,
+        #e9d5ff 45%,
+        #a855f7 70%,
+        #6d28d9
+    );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+
+    filter: drop-shadow(0 0 40px rgba(139,92,246,.25));
+}
+
+.hero-sub {
+    max-width: 570px;
+    margin: 35px auto 0;
+
+    color: #aaa;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 35px;
+    flex-wrap: wrap;
+}
+
+.button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 175px;
+    height: 52px;
+
+    border-radius: 8px;
+    text-decoration: none;
+
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+
+    overflow: hidden;
+    transition: .3s;
+}
+
+.button.primary {
+    background: white;
+    color: #09050e;
+}
+
+.button.primary:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(255,255,255,.18);
+}
+
+.button.secondary {
+    color: white;
+    border: 1px solid rgba(255,255,255,.16);
+    background: rgba(255,255,255,.05);
+    backdrop-filter: blur(10px);
+}
+
+.button.secondary:hover {
+    transform: translateY(-4px);
+    border-color: #a855f7;
+    background: rgba(124,58,237,.18);
+    box-shadow: 0 12px 40px rgba(124,58,237,.2);
+}
+
+/* ===== SCROLL INDICATOR ===== */
+
+.scroll {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    color: #666;
+    font-size: 9px;
+    letter-spacing: 3px;
+}
+
+.scroll::after {
+    content: "";
+    display: block;
+
+    width: 1px;
+    height: 35px;
+
+    background: linear-gradient(#a855f7, transparent);
+
+    margin: 9px auto 0;
+}
+
+/* ===== SECTIONS ===== */
+
+section:not(.hero) {
+    padding: 120px 7%;
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+}
+
+.label {
+    color: #a855f7;
+    font-size: 10px;
+    letter-spacing: 4px;
+    font-weight: 800;
+}
+
+.title {
+    margin-top: 10px;
+    font-size: clamp(35px, 5vw, 55px);
+    letter-spacing: -2px;
+}
+
+/* ===== STATS ===== */
+
+.stats {
+    margin-top: 45px;
+
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 15px;
+}
+
+.stat {
+    padding: 28px;
+
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+
+    transition: .3s;
+}
+
+.stat:hover {
+    transform: translateY(-6px);
+    border-color: rgba(168,85,247,.45);
+}
+
+.stat-number {
+    font-size: 30px;
+    font-weight: 900;
+}
+
+.stat-label {
+    margin-top: 6px;
+    color: #777;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* ===== FEATURE CARDS ===== */
+
+.features {
+    margin-top: 45px;
+
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 15px;
+}
+
+.feature {
+    min-height: 210px;
+    padding: 28px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(139,92,246,.09),
+            rgba(255,255,255,.025)
+        );
+
+    border: 1px solid var(--border);
+    border-radius: 14px;
+
+    transition: .35s;
+}
+
+.feature:hover {
+    transform: translateY(-8px);
+    border-color: #8b5cf6;
+    box-shadow: 0 20px 60px rgba(0,0,0,.25);
+}
+
+.icon {
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: rgba(139,92,246,.15);
+    border: 1px solid rgba(168,85,247,.2);
+
+    color: #c084fc;
+    font-weight: 900;
+}
+
+.feature h3 {
+    margin-top: 25px;
+    font-size: 17px;
+}
+
+.feature p {
+    margin-top: 9px;
+    color: #777;
+    line-height: 1.7;
+    font-size: 13px;
+}
+
+/* ===== ROSTER ===== */
+
+.roster {
+    margin-top: 45px;
+
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 15px;
+}
+
+.player {
+    padding: 25px;
+
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+
+    transition: .3s;
+}
+
+.player:hover {
+    transform: translateY(-5px);
+    border-color: #8b5cf6;
+}
+
+.player-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.avatar {
+    width: 48px;
+    height: 48px;
+
+    border-radius: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: linear-gradient(
+        135deg,
+        #8b5cf6,
+        #4c1d95
+    );
+
+    font-weight: 900;
+
+    box-shadow: 0 0 25px rgba(124,58,237,.2);
+}
+
+.player-name {
+    font-weight: 800;
+}
+
+.player-role {
+    margin-top: 4px;
+    color: #a855f7;
+    font-size: 9px;
+    letter-spacing: 2px;
+    font-weight: 800;
+}
+
+/* ===== RULES ===== */
+
+.rules {
+    margin-top: 45px;
+    max-width: 850px;
+}
+
+.rule {
+    display: flex;
+    gap: 20px;
+
+    padding: 20px;
+
+    margin-bottom: 8px;
+
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+
+    color: #999;
+    font-size: 13px;
+
+    transition: .25s;
+}
+
+.rule:hover {
+    border-color: rgba(168,85,247,.4);
+    transform: translateX(6px);
+}
+
+.rule-number {
+    color: #a855f7;
+    font-weight: 900;
+}
+
+/* ===== CTA ===== */
+
+.cta {
+    position: relative;
+    overflow: hidden;
+
+    max-width: 1100px;
+    margin: 0 auto;
+
+    padding: 90px 30px;
+
+    text-align: center;
+
+    border: 1px solid rgba(168,85,247,.25);
+    border-radius: 20px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(124,58,237,.18),
+            rgba(10,5,15,.4) 65%
+        );
+}
+
+.cta::before {
+    content: "";
+
+    position: absolute;
+
+    width: 300px;
+    height: 300px;
+
+    border: 1px solid rgba(192,132,252,.12);
+    border-radius: 50%;
+
+    top: -150px;
+    left: calc(50% - 150px);
+
+    animation: rotate 10s linear infinite;
+}
+
+@keyframes rotate {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.cta h2 {
+    position: relative;
+    font-size: clamp(38px,6vw,65px);
+    letter-spacing: -3px;
+}
+
+.cta p {
+    position: relative;
+    max-width: 500px;
+    margin: 15px auto 30px;
+    color: #888;
+    font-size: 14px;
+}
+
+.cta .button {
+    position: relative;
+}
+
+/* ===== FOOTER ===== */
+
+footer {
+    padding: 40px 7%;
+    text-align: center;
+
+    border-top: 1px solid var(--border);
+
+    color: #555;
+    font-size: 11px;
+}
+
+footer strong {
+    color: #a855f7;
+}
+
+/* ===== MOBILE ===== */
+
+@media(max-width: 800px) {
+
+    nav {
+        width: 94%;
+    }
+
+    .navlinks {
+        display: none;
+    }
+
+    .stats,
+    .features,
+    .roster {
+        grid-template-columns: 1fr;
+    }
+
+    section:not(.hero) {
+        padding: 85px 6%;
+    }
+
+    .hero h1 {
+        letter-spacing: -5px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .button {
+        width: 230px;
+    }
+}
+</style>
 </head>
 
 <body>
 
-    <!-- NAVIGATION -->
+<div class="bg">
+    <div class="glow one"></div>
+    <div class="glow two"></div>
+    <div class="grid"></div>
+</div>
 
-    <nav>
+<!-- NAV -->
 
-        <div class="logo">
-            VALØR
-        </div>
+<nav>
 
-        <div class="nav-links">
+    <div class="logo">
+        VAL<span>Ø</span>R
+    </div>
 
-            <a href="#home">
-                Home
-            </a>
+    <div class="navlinks">
+        <a href="#about">ABOUT</a>
+        <a href="#roster">ROSTER</a>
+        <a href="#rules">RULES</a>
+    </div>
 
-            <a href="#about">
-                About
-            </a>
-
-            <a href="#members">
-                Members
-            </a>
-
-            <a href="#rules">
-                Rules
-            </a>
-
-            <a href="#join">
-                Join
-            </a>
-
-        </div>
-
-    </nav>
-
-
-    <!-- HERO -->
-
-    <section
-        class="hero"
-        id="home"
+    <a
+        class="nav-discord"
+        href="https://discord.gg/xractgTxg"
+        target="_blank"
     >
+        DISCORD
+    </a>
 
-        <div class="hero-content">
+</nav>
 
-            <div class="badge">
-                ROBLOX RIVALS CLAN
-            </div>
 
-            <h1>
-                VALØR
-            </h1>
+<!-- HERO -->
 
-            <p>
-                A competitive Roblox RIVALS clan built
-                around skill, teamwork, competition,
-                and becoming better every match.
-            </p>
+<section class="hero">
 
-            <div class="buttons">
+    <div class="hero-image"></div>
 
-                <a
-                    class="btn primary"
-                    href="https://discord.gg/xractgTxg"
-                    target="_blank"
-                >
-                    JOIN DISCORD
-                </a>
+    <div class="hero-content">
 
-                <a
-                    class="btn secondary"
-                    href="#about"
-                >
-                    EXPLORE VALØR
-                </a>
+        <div class="eyebrow">
+            <span class="dot"></span>
+            ROBLOX RIVALS CLAN
+        </div>
 
-            </div>
+        <h1>VALØR</h1>
+
+        <p class="hero-sub">
+            Built for players who don't just play RIVALS —
+            they compete. Enter VALØR and fight alongside
+            a community built around skill, teamwork and competition.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a
+                class="button primary"
+                href="https://www.roblox.com/games/17625359962/RIVALS"
+                target="_blank"
+            >
+                PLAY RIVALS
+            </a>
+
+            <a
+                class="button secondary"
+                href="https://discord.gg/xractgTxg"
+                target="_blank"
+            >
+                JOIN VALØR
+            </a>
 
         </div>
 
-    </section>
+    </div>
+
+    <div class="scroll">
+        SCROLL
+    </div>
+
+</section>
 
 
-    <!-- ABOUT -->
+<!-- ABOUT -->
 
-    <section id="about">
+<section id="about">
 
-        <div class="section-title">
+    <div class="container">
 
-            <span>
-                WHO WE ARE
-            </span>
-
-            <h2>
-                ABOUT VALØR
-            </h2>
-
+        <div class="label">
+            01 — THE CLAN
         </div>
 
-        <div class="about">
-
-            VALØR is a Roblox RIVALS clan focused on
-            competitive gameplay, teamwork, improvement,
-            and building a strong community of players.
-
-            Whether you're here to compete, improve,
-            or meet other players, VALØR is the place
-            to push yourself further.
-
-        </div>
+        <h2 class="title">
+            BUILT TO COMPETE.
+        </h2>
 
         <div class="stats">
 
             <div class="stat">
-
-                <h3>
-                    RIVALS
-                </h3>
-
-                <p>
-                    Main Game
-                </p>
-
+                <div class="stat-number">RIVALS</div>
+                <div class="stat-label">Main Game</div>
             </div>
 
             <div class="stat">
-
-                <h3>
-                    VALØR
-                </h3>
-
-                <p>
-                    Clan
-                </p>
-
+                <div class="stat-number">VALØR</div>
+                <div class="stat-label">Clan</div>
             </div>
 
             <div class="stat">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Community</div>
+            </div>
 
-                <h3>
-                    24/7
-                </h3>
+        </div>
+
+        <div class="features">
+
+            <div class="feature">
+
+                <div class="icon">01</div>
+
+                <h3>COMPETE</h3>
 
                 <p>
-                    Community
+                    Play against strong players and
+                    push your limits every match.
+                </p>
+
+            </div>
+
+            <div class="feature">
+
+                <div class="icon">02</div>
+
+                <h3>IMPROVE</h3>
+
+                <p>
+                    Build your mechanics, teamwork and
+                    game sense with the VALØR community.
+                </p>
+
+            </div>
+
+            <div class="feature">
+
+                <div class="icon">03</div>
+
+                <h3>CONNECT</h3>
+
+                <p>
+                    Meet other Rivals players and
+                    become part of the clan.
                 </p>
 
             </div>
 
         </div>
 
-    </section>
+    </div>
+
+</section>
 
 
-    <!-- MEMBERS -->
+<!-- ROSTER -->
 
-    <section id="members">
+<section id="roster">
 
-        <div class="section-title">
+    <div class="container">
 
-            <span>
-                THE TEAM
-            </span>
-
-            <h2>
-                MEMBERS
-            </h2>
-
+        <div class="label">
+            02 — THE ROSTER
         </div>
 
-        <div class="members">
+        <h2 class="title">
+            OUR PLAYERS.
+        </h2>
 
-            <div class="member">
+        <div class="roster">
 
-                <div class="member-icon">
-                    O
+            <div class="player">
+
+                <div class="player-top">
+
+                    <div class="avatar">
+                        O
+                    </div>
+
+                    <div>
+                        <div class="player-name">
+                            OWNER
+                        </div>
+
+                        <div class="player-role">
+                            OWNER
+                        </div>
+                    </div>
+
                 </div>
 
-                <h3>
-                    Owner
-                </h3>
+            </div>
 
-                <p>
-                    OWNER
-                </p>
+            <div class="player">
+
+                <div class="player-top">
+
+                    <div class="avatar">
+                        C
+                    </div>
+
+                    <div>
+                        <div class="player-name">
+                            COMING SOON
+                        </div>
+
+                        <div class="player-role">
+                            CO-OWNER
+                        </div>
+                    </div>
+
+                </div>
 
             </div>
 
+            <div class="player">
 
-            <div class="member">
+                <div class="player-top">
 
-                <div class="member-icon">
-                    C
+                    <div class="avatar">
+                        M
+                    </div>
+
+                    <div>
+                        <div class="player-name">
+                            COMING SOON
+                        </div>
+
+                        <div class="player-role">
+                            MEMBER
+                        </div>
+                    </div>
+
                 </div>
-
-                <h3>
-                    Coming Soon
-                </h3>
-
-                <p>
-                    CO-OWNER
-                </p>
-
-            </div>
-
-
-            <div class="member">
-
-                <div class="member-icon">
-                    M
-                </div>
-
-                <h3>
-                    Coming Soon
-                </h3>
-
-                <p>
-                    MEMBER
-                </p>
 
             </div>
 
         </div>
 
-    </section>
+    </div>
+
+</section>
 
 
-    <!-- RULES -->
+<!-- RULES -->
 
-    <section id="rules">
+<section id="rules">
 
-        <div class="section-title">
+    <div class="container">
 
-            <span>
-                OUR STANDARDS
-            </span>
-
-            <h2>
-                RULES
-            </h2>
-
+        <div class="label">
+            03 — STANDARDS
         </div>
+
+        <h2 class="title">
+            PLAY WITH RESPECT.
+        </h2>
 
         <div class="rules">
 
             <div class="rule">
-
-                <strong>
-                    01.
-                </strong>
-
-                Respect everyone in the VALØR community.
-
+                <span class="rule-number">01</span>
+                Respect everyone in the community.
             </div>
 
             <div class="rule">
-
-                <strong>
-                    02.
-                </strong>
-
-                No cheating, exploiting, or unfair gameplay.
-
+                <span class="rule-number">02</span>
+                No cheating, exploiting or unfair gameplay.
             </div>
 
             <div class="rule">
-
-                <strong>
-                    03.
-                </strong>
-
-                No unnecessary drama or toxicity.
-
+                <span class="rule-number">03</span>
+                Don't create unnecessary drama.
             </div>
 
             <div class="rule">
-
-                <strong>
-                    04.
-                </strong>
-
+                <span class="rule-number">04</span>
                 Represent VALØR properly.
-
             </div>
 
             <div class="rule">
-
-                <strong>
-                    05.
-                </strong>
-
+                <span class="rule-number">05</span>
                 Have fun and help the clan grow.
-
             </div>
 
         </div>
 
-    </section>
+    </div>
+
+</section>
 
 
-    <!-- JOIN -->
+<!-- CTA -->
 
-    <section id="join">
+<section>
 
-        <div class="join">
+    <div class="cta">
 
-            <h2>
-                JOIN VALØR
-            </h2>
+        <h2>
+            READY TO JOIN?
+        </h2>
 
-            <p>
-                Want to become part of the clan?
-                Join our Discord and meet the community.
-            </p>
+        <p>
+            Step into VALØR, join the Discord and
+            start playing with the clan.
+        </p>
 
-            <a
-                class="btn primary"
-                href="https://discord.gg/xractgTxg"
-                target="_blank"
-            >
-                JOIN DISCORD
-            </a>
+        <a
+            class="button primary"
+            href="https://discord.gg/xractgTxg"
+            target="_blank"
+        >
+            JOIN VALØR
+        </a>
 
-        </div>
+    </div>
 
-    </section>
+</section>
 
 
-    <!-- FOOTER -->
+<!-- FOOTER -->
 
-    <footer>
-
-        © 2026
-        <span>
-            VALØR
-        </span>
-        — Roblox RIVALS Clan
-
-    </footer>
+<footer>
+    © 2026 <strong>VALØR</strong> — Roblox RIVALS Clan
+</footer>
 
 </body>
 </html>
