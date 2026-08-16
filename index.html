@@ -69,6 +69,14 @@ footer{text-align:center;padding:42px;color:#555;border-top:1px solid #ffffff0d;
 .growBox{margin-top:15px;padding:28px;display:flex;align-items:center;justify-content:space-between;gap:25px;background:linear-gradient(100deg,#7c3aed18,#ffffff05)}
 .growBox h3{font-size:22px;margin:8px 0}.growBox p{color:#777;line-height:1.6;max-width:650px}
 @media(max-width:800px){.recordGrid{grid-template-columns:1fr}.growBox{flex-direction:column;align-items:flex-start}}
+
+.donateBox{display:flex;align-items:center;gap:25px;padding:32px;background:linear-gradient(110deg,#7c3aed22,#ffffff05);border:1px solid #a855f755;border-radius:16px;position:relative;overflow:hidden}
+.donateBox:before{content:"";position:absolute;inset:-2px;background:linear-gradient(90deg,transparent,#c084fc22,transparent);transform:translateX(-100%);animation:donateSweep 4s infinite;pointer-events:none}
+@keyframes donateSweep{50%,100%{transform:translateX(100%)}}
+.donateIcon{width:65px;height:65px;flex:0 0 65px;display:flex;align-items:center;justify-content:center;border-radius:15px;background:#7c3aed33;border:1px solid #c084fc55;color:#d8b4fe;font-size:27px;box-shadow:0 0 30px #a855f733;animation:heartPulse 1.8s infinite}
+@keyframes heartPulse{50%{transform:scale(1.1);box-shadow:0 0 45px #a855f766}}
+.donateText{flex:1}.donateText h3{font-size:21px;margin-bottom:8px}.donateText p{color:#777;line-height:1.7;font-size:13px}.donateNote{margin-top:10px;color:#b06cff;font-size:10px;font-weight:900;letter-spacing:1px}
+@media(max-width:700px){.donateBox{flex-direction:column;align-items:flex-start}.donateBox .btn{width:100%}}
 </style>
 </head>
 <body>
@@ -155,6 +163,20 @@ footer{text-align:center;padding:42px;color:#555;border-top:1px solid #ffffff0d;
 <div class="faqItem"><button>Is VALØR only for knife mains?<span>+</span></button><div class="faqAnswer">Knife gameplay is a major part of VALØR, but the clan is open to players who enjoy competitive RIVALS and want to contribute.</div></div>
 <div class="faqItem"><button>How can I join VALØR?<span>+</span></button><div class="faqAnswer">Join the VALØR Discord, read the clan information, and follow the current recruitment or tryout instructions.</div></div>
 </div></div></section>
+
+<section id="donate"><div class="container">
+<div class="label">08 — SUPPORT VALØR</div>
+<h2 class="title">HELP US GROW.</h2>
+<div class="donateBox">
+<div class="donateIcon">♥</div>
+<div class="donateText">
+<h3>SUPPORT THE CLAN</h3>
+<p>Want to help VALØR become bigger and stronger? Donations can help support clan events, community activities, graphics, giveaways and future projects.</p>
+<div class="donateNote">Every contribution helps. Thank you for supporting VALØR.</div>
+</div>
+<a class="btn purple" href="https://discord.gg/xractgTxg" target="_blank">DONATE / CONTACT</a>
+</div>
+</div></section>
 <section><div class="cta"><h2>READY FOR VALØR?</h2><p>Join the Discord and become part of the RIVALS knife-main community.</p><a class="btn purple" href="https://discord.gg/xractgTxg" target="_blank">JOIN VALØR</a></div></section>
 <footer>© 2026 <b>VALØR</b> — Roblox RIVALS Clan • 220 Members</footer>
 <script>
