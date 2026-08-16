@@ -77,6 +77,17 @@ footer{text-align:center;padding:42px;color:#555;border-top:1px solid #ffffff0d;
 @keyframes heartPulse{50%{transform:scale(1.1);box-shadow:0 0 45px #a855f766}}
 .donateText{flex:1}.donateText h3{font-size:21px;margin-bottom:8px}.donateText p{color:#777;line-height:1.7;font-size:13px}.donateNote{margin-top:10px;color:#b06cff;font-size:10px;font-weight:900;letter-spacing:1px}
 @media(max-width:700px){.donateBox{flex-direction:column;align-items:flex-start}.donateBox .btn{width:100%}}
+
+.devIntro{max-width:700px;color:#777;line-height:1.7;margin-top:-20px;margin-bottom:30px}
+.devGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.devCard{padding:22px;background:#ffffff07;border:1px solid #ffffff12;border-radius:13px;transition:.35s;position:relative;overflow:hidden}
+.devCard:hover{transform:translateY(-7px);border-color:#a855f777;box-shadow:0 18px 45px #7c3aed22}
+.devCard.featured{grid-column:span 2;background:linear-gradient(110deg,#7c3aed25,#ffffff06);border-color:#b06cff66}
+.devAvatar{width:45px;height:45px;border-radius:10px;display:inline-flex;vertical-align:middle;align-items:center;justify-content:center;margin-right:12px;background:linear-gradient(135deg,#a855f7,#4c1d95);font-weight:1000;font-size:12px;box-shadow:0 0 22px #8b5cf733}
+.devCard b{font-size:13px}.devCard span{display:block;color:#b06cff;font-size:8px;letter-spacing:2px;font-weight:900;margin-top:5px;margin-left:57px}
+.devCard p{color:#777;font-size:11px;line-height:1.6;margin-top:16px}
+@media(max-width:800px){.devGrid{grid-template-columns:1fr 1fr}.devCard.featured{grid-column:span 2}}
+@media(max-width:520px){.devGrid{grid-template-columns:1fr}.devCard.featured{grid-column:span 1}}
 </style>
 </head>
 <body>
@@ -164,6 +175,23 @@ footer{text-align:center;padding:42px;color:#555;border-top:1px solid #ffffff0d;
 <div class="faqItem"><button>How can I join VALØR?<span>+</span></button><div class="faqAnswer">Join the VALØR Discord, read the clan information, and follow the current recruitment or tryout instructions.</div></div>
 </div></div></section>
 
+
+<section id="developers"><div class="container">
+<div class="label">09 — DEVELOPMENT TEAM</div>
+<h2 class="title">THE PEOPLE WHO BUILT VALØR.</h2>
+<p class="devIntro">VALØR is supported by a team of developers and contributors who help build, maintain and improve the website and community.</p>
+<div class="devGrid">
+<div class="devCard featured"><div class="devAvatar">ME</div><div><b>VALOR_ME</b><span>WEBSITE DEV</span></div><p>Website developer helping build and maintain the VALØR website.</p></div>
+<div class="devCard"><div class="devAvatar">N</div><div><b>Nolan</b><span>DEVELOPER</span></div><p>Developer and contributor supporting VALØR projects.</p></div>
+<div class="devCard"><div class="devAvatar">V</div><div><b>VALOR</b><span>DEVELOPER</span></div><p>Core VALØR contributor.</p></div>
+<div class="devCard"><div class="devAvatar">B</div><div><b>ban_danil</b><span>DEVELOPER</span></div><p>Community development contributor.</p></div>
+<div class="devCard"><div class="devAvatar">B</div><div><b>bleed</b><span>DEVELOPER</span></div><p>Development and community contributor.</p></div>
+<div class="devCard"><div class="devAvatar">T</div><div><b>TURTLE</b><span>DEVELOPER</span></div><p>Development contributor.</p></div>
+<div class="devCard"><div class="devAvatar">G</div><div><b>gerrardsusnpc</b><span>DEVELOPER</span></div><p>VALØR development contributor.</p></div>
+<div class="devCard"><div class="devAvatar">R</div><div><b>rip.spec0r</b><span>DEVELOPER</span></div><p>Development contributor.</p></div>
+<div class="devCard"><div class="devAvatar">V</div><div><b>Vzx</b><span>CONTRIBUTOR</span></div><p>Contributor helping with VALØR projects.</p></div>
+<div class="devCard"><div class="devAvatar">00</div><div><b>00yvane</b><span>CONTRIBUTOR</span></div><p>Contributor helping the VALØR community.</p></div>
+</div></div></section>
 <section id="donate"><div class="container">
 <div class="label">08 — SUPPORT VALØR</div>
 <h2 class="title">HELP US GROW.</h2>
