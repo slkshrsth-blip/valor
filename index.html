@@ -48,6 +48,27 @@ footer{text-align:center;padding:42px;color:#555;border-top:1px solid #ffffff0d;
 .faqAnswer{max-height:0;overflow:hidden;color:#888;line-height:1.8;padding:0 23px;transition:max-height .4s ease,padding .4s ease}
 .faqItem.open .faqAnswer{max-height:180px;padding:0 23px 22px}
 .faqItem.open button span{transform:rotate(45deg)}
+
+.recordGrid{display:grid;grid-template-columns:1.3fr .7fr;gap:15px}
+.recordMain,.recordSide,.growBox{background:#ffffff07;border:1px solid #ffffff12;border-radius:15px}
+.recordMain{padding:35px;position:relative;overflow:hidden}
+.recordMain:before{content:"";position:absolute;width:300px;height:300px;right:-130px;top:-150px;background:#a855f733;border-radius:50%;filter:blur(45px);animation:recordGlow 3s infinite alternate}
+@keyframes recordGlow{to{transform:scale(1.35);opacity:.6}}
+.recordNumber{font-size:85px;font-weight:1000;letter-spacing:-5px;background:linear-gradient(120deg,#fff,#a855f7);-webkit-background-clip:text;color:transparent}
+.recordNumber span{font-size:30px;color:#777;letter-spacing:0}
+.recordTitle{font-size:11px;letter-spacing:4px;color:#b06cff;font-weight:900}
+.recordMain p{max-width:700px;color:#777;line-height:1.8;margin:20px 0}
+.recordBar{height:8px;background:#ffffff0d;border-radius:20px;overflow:hidden;margin:25px 0}
+.recordBar div{height:100%;width:100%;background:linear-gradient(90deg,#7c3aed,#d8b4fe);box-shadow:0 0 20px #a855f7;animation:barGlow 2s infinite alternate}
+@keyframes barGlow{to{filter:brightness(1.5)}}
+.recordStats{display:flex;gap:45px}.recordStats b{font-size:25px}.recordStats small{display:block;color:#666;font-size:8px;letter-spacing:2px;margin-top:5px}
+.recordSide{padding:15px;display:grid;gap:10px}
+.miniStat{display:flex;align-items:center;gap:15px;padding:20px;background:#ffffff05;border:1px solid #ffffff09;border-radius:11px}
+.miniStat>span{font-size:28px;color:#b06cff;text-shadow:0 0 18px #a855f7}
+.miniStat b{font-size:11px;letter-spacing:1px}.miniStat small{display:block;color:#666;margin-top:5px;line-height:1.5}
+.growBox{margin-top:15px;padding:28px;display:flex;align-items:center;justify-content:space-between;gap:25px;background:linear-gradient(100deg,#7c3aed18,#ffffff05)}
+.growBox h3{font-size:22px;margin:8px 0}.growBox p{color:#777;line-height:1.6;max-width:650px}
+@media(max-width:800px){.recordGrid{grid-template-columns:1fr}.growBox{flex-direction:column;align-items:flex-start}}
 </style>
 </head>
 <body>
@@ -101,8 +122,31 @@ footer{text-align:center;padding:42px;color:#555;border-top:1px solid #ffffff0d;
 </div></div></section>
 
 
+
+<section id="record"><div class="container">
+<div class="label">06 — COMPETITIVE RECORD</div>
+<h2 class="title">32 WARS. 32 WINS.</h2>
+<div class="recordGrid">
+<div class="recordMain">
+<div class="recordNumber">32<span>/32</span></div>
+<div class="recordTitle">CLAN WARS WON</div>
+<p>VALØR has completed <b>32 clan wars</b> and won every single one. The goal isn't just to have a record — it's to keep improving, competing and growing together.</p>
+<div class="recordBar"><div></div></div>
+<div class="recordStats"><div><b>32</b><small>WINS</small></div><div><b>0</b><small>LOSSES</small></div><div><b>100%</b><small>WIN RATE</small></div></div>
+</div>
+<div class="recordSide">
+<div class="miniStat"><span>⚔</span><div><b>UNDEFEATED</b><small>32–0 clan war record</small></div></div>
+<div class="miniStat"><span>↑</span><div><b>KEEP GROWING</b><small>More players. More competition. More wins.</small></div></div>
+<div class="miniStat"><span>∞</span><div><b>THE NEXT LEVEL</b><small>Our goal is to build VALØR into a stronger competitive community.</small></div></div>
+</div>
+</div>
+<div class="growBox">
+<div><div class="label">HELP US GROW</div><h3>WANT TO BE PART OF THE NEXT WIN?</h3><p>Join VALØR, bring your best RIVALS gameplay, meet the community and help us push the clan even further.</p></div>
+<a class="btn purple" href="https://discord.gg/xractgTxg" target="_blank">JOIN THE COMMUNITY</a>
+</div>
+</div></section>
 <section id="faq"><div class="container">
-<div class="label">06 — FAQ</div>
+<div class="label">07 — FAQ</div>
 <h2 class="title">WHY VALØR?</h2>
 <div class="faq">
 <div class="faqItem"><button>Why should I join VALØR?<span>+</span></button><div class="faqAnswer">VALØR is a competitive RIVALS clan where you can meet skilled players, improve your mechanics, and participate in clan activities.</div></div>
