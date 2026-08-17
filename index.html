@@ -2,219 +2,605 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>VALØR | RIVALS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VALØR Command Center</title>
+
 <style>
-*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
-body{font-family:Inter,Arial,sans-serif;background:#040208;color:#fff;overflow-x:hidden}
-body:before{content:"";position:fixed;inset:0;z-index:-3;background:radial-gradient(circle at 15% 10%,#8b5cf644,transparent 30%),radial-gradient(circle at 90% 70%,#c084fc33,transparent 28%);animation:bg 10s ease-in-out infinite alternate}
-@keyframes bg{to{transform:scale(1.12) translate(2%,-2%)}}
-body:after{content:"";position:fixed;inset:0;z-index:-2;opacity:.2;background-image:linear-gradient(#a855f711 1px,transparent 1px),linear-gradient(90deg,#a855f711 1px,transparent 1px);background-size:65px 65px}
-nav{position:fixed;z-index:99;top:18px;left:50%;transform:translateX(-50%);width:92%;max-width:1180px;padding:17px 22px;display:flex;align-items:center;justify-content:space-between;background:#08060ddd;border:1px solid #ffffff18;border-radius:15px;backdrop-filter:blur(18px)}
-.logo{font-weight:1000;font-size:22px;letter-spacing:5px}.logo span,.purple,.label,.role,.time{color:#b06cff}
-.links a{color:#888;text-decoration:none;font-size:10px;font-weight:800;margin:0 9px}.links a:hover{color:#fff}
-.navbtn{background:#7c3aed;color:#fff!important;padding:10px 15px;border-radius:7px!important}
-.hero{min-height:100vh;position:relative;display:flex;align-items:center;justify-content:center;text-align:center;padding:130px 20px 80px;overflow:hidden}
-.hero:before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(#04020866,#040208f7),url("https://www.roblox.com/asset-thumbnail/image?assetId=17625359962&width=1280&height=720&format=png") center/cover;animation:zoom 13s ease-in-out infinite alternate}
-@keyframes zoom{to{transform:scale(1.1)}}
-.hero:after{content:"";position:absolute;width:35%;height:160%;left:-50%;top:-30%;background:linear-gradient(90deg,transparent,#fff2,transparent);transform:rotate(17deg);animation:sweep 5s infinite;pointer-events:none}
-@keyframes sweep{0%,55%{left:-50%}80%,100%{left:125%}}
-.heroIn{max-width:950px;animation:enter 1.1s cubic-bezier(.2,.8,.2,1)}
-@keyframes enter{from{opacity:0;transform:translateY(55px) scale(.94);filter:blur(7px)}to{opacity:1;transform:none;filter:none}}
-.badge{display:inline-block;padding:10px 18px;border:1px solid #b06cff55;background:#7c3aed18;border-radius:40px;color:#dfc7ff;font-size:10px;font-weight:900;letter-spacing:3px;animation:float 2.4s infinite}
-@keyframes float{50%{transform:translateY(-6px);box-shadow:0 0 30px #a855f744}}
-h1{font-size:clamp(85px,17vw,190px);line-height:.8;letter-spacing:-12px;margin:28px 0;background:linear-gradient(120deg,#fff,#eadcff,#a855f7,#5b21b6);-webkit-background-clip:text;color:transparent;animation:logoGlow 3s ease-in-out infinite}
-@keyframes logoGlow{50%{filter:drop-shadow(0 0 70px #a855f788)}}
-.hero p{max-width:650px;margin:28px auto;color:#aaa;line-height:1.8;font-size:15px}
-.buttons{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}.btn{position:relative;overflow:hidden;min-width:185px;height:52px;display:inline-flex;align-items:center;justify-content:center;border-radius:8px;text-decoration:none;font-size:10px;font-weight:900;letter-spacing:1.5px;transition:.3s}.btn:after{content:"";position:absolute;width:80%;height:100%;left:-130%;top:0;background:linear-gradient(90deg,transparent,#fff8,transparent);transform:skewX(-20deg);animation:shine 3.5s infinite}@keyframes shine{0%,60%{left:-130%}80%,100%{left:150%}}.btn:hover{transform:translateY(-7px) scale(1.04);box-shadow:0 15px 45px #7c3aed66}.primary{background:#fff;color:#08050c}.purple{background:#7c3aed;color:#fff}
-section{padding:105px 7%}.container{max-width:1180px;margin:auto}.label{font-size:10px;letter-spacing:4px;font-weight:900}.title{font-size:clamp(38px,5vw,60px);letter-spacing:-3px;margin:10px 0 38px}
-.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}.stat,.card,.leader,.tier,.recentRow,.rule{background:#ffffff07;border:1px solid #ffffff12;border-radius:13px;transition:.35s}.stat{padding:28px}.stat:hover,.card:hover,.leader:hover,.tier:hover,.recentRow:hover{transform:translateY(-8px);border-color:#b06cff77;box-shadow:0 18px 45px #7c3aed20}.stat b{font-size:29px}.stat small{display:block;color:#666;font-size:9px;letter-spacing:2px;margin-top:8px}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}.card{padding:28px;min-height:200px}.icon,.avatar{width:50px;height:50px;border-radius:11px;background:linear-gradient(135deg,#a855f7,#4c1d95);display:flex;align-items:center;justify-content:center;font-weight:1000;box-shadow:0 0 25px #8b5cf733}.card h3{margin:20px 0 9px}.card p,.desc{color:#777;line-height:1.75;font-size:13px}
-.leaders{display:grid;grid-template-columns:1fr 1fr;gap:14px}.leader{padding:28px}.top{display:flex;align-items:center;gap:15px}.role{font-size:9px;font-weight:900;letter-spacing:2px;margin-top:5px}
-.tiers{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}.tier{text-align:center;padding:28px 10px}.tier strong{font-size:25px}.tier span{display:block;color:#666;font-size:8px;letter-spacing:1px;margin-top:8px}.tier:last-child{background:linear-gradient(145deg,#a855f744,#4c1d9566);border-color:#d8b4feaa;animation:infty 2s infinite}.tier:last-child strong{color:#eadcff;text-shadow:0 0 22px #c084fc}@keyframes infty{50%{box-shadow:0 0 38px #a855f755}}
-.recent{max-width:900px;display:grid;gap:9px}.recentRow{padding:18px 20px;display:flex;justify-content:space-between;align-items:center;animation:slide .7s both}.recentRow:nth-child(2){animation-delay:.15s}.recentRow:nth-child(3){animation-delay:.3s}.recentRow:nth-child(4){animation-delay:.45s}@keyframes slide{from{opacity:0;transform:translateX(-35px)}to{opacity:1;transform:none}}.member{display:flex;align-items:center;gap:13px}.online{width:8px;height:8px;background:#b06cff;border-radius:50%;box-shadow:0 0 15px #b06cff;animation:pulse 1.3s infinite}@keyframes pulse{50%{transform:scale(1.8);box-shadow:0 0 26px #d8b4fe}}.time{font-size:9px;font-weight:900}
-.rules{max-width:900px}.rule{padding:18px 20px;margin-bottom:8px;color:#999}.rule b{color:#b06cff;margin-right:16px}
-.cta{max-width:1150px;margin:auto;padding:90px 25px;text-align:center;border:1px solid #a855f755;border-radius:22px;background:radial-gradient(circle,#7c3aed2e,transparent 70%)}.cta h2{font-size:clamp(40px,6vw,70px);letter-spacing:-4px}.cta p{color:#777;margin:16px auto 28px}
-footer{text-align:center;padding:42px;color:#555;border-top:1px solid #ffffff0d;font-size:11px}footer b{color:#b06cff}
-.particles{position:fixed;inset:0;pointer-events:none;z-index:20;overflow:hidden}.particles i{position:absolute;bottom:-10px;width:3px;height:3px;border-radius:50%;background:#d8b4fe;box-shadow:0 0 12px #a855f7;animation:rise 9s linear infinite;opacity:0}.particles i:nth-child(1){left:5%;animation-delay:1s}.particles i:nth-child(2){left:16%;animation-delay:4s}.particles i:nth-child(3){left:28%;animation-delay:2s}.particles i:nth-child(4){left:40%;animation-delay:7s}.particles i:nth-child(5){left:53%;animation-delay:3s}.particles i:nth-child(6){left:66%;animation-delay:6s}.particles i:nth-child(7){left:79%;animation-delay:1s}.particles i:nth-child(8){left:92%;animation-delay:5s}@keyframes rise{0%{transform:translateY(0);opacity:0}15%{opacity:.8}100%{transform:translateY(-110vh);opacity:0}}
-@media(max-width:800px){.links{display:none}.grid4,.cards,.leaders,.tiers{grid-template-columns:1fr 1fr}.title{font-size:40px}}
-@media(max-width:520px){.grid4,.cards,.leaders,.tiers{grid-template-columns:1fr}}
+* {
+  box-sizing: border-box;
+}
 
-.faq{max-width:900px;display:grid;gap:10px}
-.faqItem{background:#ffffff07;border:1px solid #ffffff12;border-radius:13px;overflow:hidden;transition:.3s}
-.faqItem:hover{border-color:#b06cff77;box-shadow:0 15px 35px #7c3aed20}
-.faqItem button{width:100%;border:0;background:transparent;color:#fff;text-align:left;padding:21px 23px;font-size:14px;font-weight:800;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
-.faqItem button span{color:#b06cff;font-size:22px;transition:.3s}
-.faqAnswer{max-height:0;overflow:hidden;color:#888;line-height:1.8;padding:0 23px;transition:max-height .4s ease,padding .4s ease}
-.faqItem.open .faqAnswer{max-height:180px;padding:0 23px 22px}
-.faqItem.open button span{transform:rotate(45deg)}
+body {
+  margin: 0;
+  background: #08030f;
+  color: #f5edff;
+  font-family: Arial, sans-serif;
+}
 
-.recordGrid{display:grid;grid-template-columns:1.3fr .7fr;gap:15px}
-.recordMain,.recordSide,.growBox{background:#ffffff07;border:1px solid #ffffff12;border-radius:15px}
-.recordMain{padding:35px;position:relative;overflow:hidden}
-.recordMain:before{content:"";position:absolute;width:300px;height:300px;right:-130px;top:-150px;background:#a855f733;border-radius:50%;filter:blur(45px);animation:recordGlow 3s infinite alternate}
-@keyframes recordGlow{to{transform:scale(1.35);opacity:.6}}
-.recordNumber{font-size:85px;font-weight:1000;letter-spacing:-5px;background:linear-gradient(120deg,#fff,#a855f7);-webkit-background-clip:text;color:transparent}
-.recordNumber span{font-size:30px;color:#777;letter-spacing:0}
-.recordTitle{font-size:11px;letter-spacing:4px;color:#b06cff;font-weight:900}
-.recordMain p{max-width:700px;color:#777;line-height:1.8;margin:20px 0}
-.recordBar{height:8px;background:#ffffff0d;border-radius:20px;overflow:hidden;margin:25px 0}
-.recordBar div{height:100%;width:100%;background:linear-gradient(90deg,#7c3aed,#d8b4fe);box-shadow:0 0 20px #a855f7;animation:barGlow 2s infinite alternate}
-@keyframes barGlow{to{filter:brightness(1.5)}}
-.recordStats{display:flex;gap:45px}.recordStats b{font-size:25px}.recordStats small{display:block;color:#666;font-size:8px;letter-spacing:2px;margin-top:5px}
-.recordSide{padding:15px;display:grid;gap:10px}
-.miniStat{display:flex;align-items:center;gap:15px;padding:20px;background:#ffffff05;border:1px solid #ffffff09;border-radius:11px}
-.miniStat>span{font-size:28px;color:#b06cff;text-shadow:0 0 18px #a855f7}
-.miniStat b{font-size:11px;letter-spacing:1px}.miniStat small{display:block;color:#666;margin-top:5px;line-height:1.5}
-.growBox{margin-top:15px;padding:28px;display:flex;align-items:center;justify-content:space-between;gap:25px;background:linear-gradient(100deg,#7c3aed18,#ffffff05)}
-.growBox h3{font-size:22px;margin:8px 0}.growBox p{color:#777;line-height:1.6;max-width:650px}
-@media(max-width:800px){.recordGrid{grid-template-columns:1fr}.growBox{flex-direction:column;align-items:flex-start}}
+.app {
+  display: flex;
+  min-height: 100vh;
+}
 
-.donateBox{display:flex;align-items:center;gap:25px;padding:32px;background:linear-gradient(110deg,#7c3aed22,#ffffff05);border:1px solid #a855f755;border-radius:16px;position:relative;overflow:hidden}
-.donateBox:before{content:"";position:absolute;inset:-2px;background:linear-gradient(90deg,transparent,#c084fc22,transparent);transform:translateX(-100%);animation:donateSweep 4s infinite;pointer-events:none}
-@keyframes donateSweep{50%,100%{transform:translateX(100%)}}
-.donateIcon{width:65px;height:65px;flex:0 0 65px;display:flex;align-items:center;justify-content:center;border-radius:15px;background:#7c3aed33;border:1px solid #c084fc55;color:#d8b4fe;font-size:27px;box-shadow:0 0 30px #a855f733;animation:heartPulse 1.8s infinite}
-@keyframes heartPulse{50%{transform:scale(1.1);box-shadow:0 0 45px #a855f766}}
-.donateText{flex:1}.donateText h3{font-size:21px;margin-bottom:8px}.donateText p{color:#777;line-height:1.7;font-size:13px}.donateNote{margin-top:10px;color:#b06cff;font-size:10px;font-weight:900;letter-spacing:1px}
-@media(max-width:700px){.donateBox{flex-direction:column;align-items:flex-start}.donateBox .btn{width:100%}}
+.sidebar {
+  width: 250px;
+  background: #0b0413;
+  border-right: 1px solid #32154a;
+  padding: 18px 12px;
+}
 
-.devIntro{max-width:700px;color:#777;line-height:1.7;margin-top:-20px;margin-bottom:30px}
-.devGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.devCard{padding:22px;background:#ffffff07;border:1px solid #ffffff12;border-radius:13px;transition:.35s;position:relative;overflow:hidden}
-.devCard:hover{transform:translateY(-7px);border-color:#a855f777;box-shadow:0 18px 45px #7c3aed22}
-.devCard.featured{grid-column:span 2;background:linear-gradient(110deg,#7c3aed25,#ffffff06);border-color:#b06cff66}
-.devAvatar{width:45px;height:45px;border-radius:10px;display:inline-flex;vertical-align:middle;align-items:center;justify-content:center;margin-right:12px;background:linear-gradient(135deg,#a855f7,#4c1d95);font-weight:1000;font-size:12px;box-shadow:0 0 22px #8b5cf733}
-.devCard b{font-size:13px}.devCard span{display:block;color:#b06cff;font-size:8px;letter-spacing:2px;font-weight:900;margin-top:5px;margin-left:57px}
-.devCard p{color:#777;font-size:11px;line-height:1.6;margin-top:16px}
-@media(max-width:800px){.devGrid{grid-template-columns:1fr 1fr}.devCard.featured{grid-column:span 2}}
-@media(max-width:520px){.devGrid{grid-template-columns:1fr}.devCard.featured{grid-column:span 1}}
+.brand {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.logo {
+  width: 42px;
+  height: 42px;
+  border: 1px solid #9638ff;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  background: #19072b;
+}
+
+.brand b {
+  letter-spacing: 3px;
+}
+
+.brand small {
+  display: block;
+  color: #8f7b9c;
+  font-size: 10px;
+  margin-top: 3px;
+}
+
+.search,
+.nav {
+  border: 1px solid #3b1852;
+  background: #11051b;
+  border-radius: 9px;
+  padding: 10px;
+  margin: 7px 0;
+  color: #b6a4c1;
+  font-size: 12px;
+}
+
+.nav.active {
+  background: #210936;
+  color: white;
+  border-color: #6930a0;
+}
+
+.label {
+  color: #665170;
+  font-size: 9px;
+  letter-spacing: 2px;
+  margin: 18px 7px 8px;
+}
+
+.main {
+  flex: 1;
+  padding: 20px;
+  overflow: auto;
+  background:
+    radial-gradient(circle at 70% 0, #2b0a4520, transparent 30%);
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.command {
+  border: 1px solid #542078;
+  background: #170726;
+  padding: 9px 14px;
+  border-radius: 9px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.discord {
+  border: 1px solid #6840a0;
+  background: #17082a;
+  color: white;
+  border-radius: 9px;
+  padding: 10px 14px;
+  cursor: pointer;
+}
+
+.hero,
+.card {
+  border: 1px solid #47205f;
+  background: linear-gradient(145deg, #160622, #0e0416);
+  border-radius: 16px;
+}
+
+.hero {
+  padding: 25px;
+  margin-bottom: 16px;
+}
+
+.pills {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.pill {
+  border: 1px solid #5c2b82;
+  border-radius: 999px;
+  padding: 7px 11px;
+  font-size: 10px;
+  color: #cdb9dc;
+}
+
+.pill.green {
+  border-color: #1e826c;
+  color: #62e6c6;
+}
+
+.hero h1 {
+  font-size: 29px;
+  margin: 18px 0 5px;
+}
+
+.hero p {
+  color: #96849f;
+  font-size: 12px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 16px;
+}
+
+.card {
+  padding: 16px;
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 13px;
+}
+
+.head b {
+  font-size: 13px;
+}
+
+.tag {
+  font-size: 9px;
+  border: 1px solid #7135a3;
+  color: #d0b2ee;
+  padding: 5px 8px;
+  border-radius: 6px;
+}
+
+.score {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  align-items: center;
+  padding: 25px;
+}
+
+.score strong {
+  font-size: 40px;
+  display: block;
+}
+
+.vs {
+  border: 1px solid #652a92;
+  padding: 7px;
+  border-radius: 6px;
+  color: #c072ff;
+  font-size: 10px;
+}
+
+.news {
+  background: #180723;
+  border: 1px solid #3e1954;
+  border-radius: 11px;
+  padding: 14px;
+}
+
+.news small {
+  color: #8f7b99;
+}
+
+.news h3 {
+  font-size: 13px;
+}
+
+.news p {
+  font-size: 10px;
+  line-height: 1.6;
+  color: #9b89a5;
+}
+
+.announce {
+  margin-top: 16px;
+}
+
+.announce input,
+.announce textarea {
+  width: 100%;
+  background: #0d0415;
+  border: 1px solid #43205b;
+  color: white;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 6px 0;
+}
+
+.announce textarea {
+  height: 90px;
+  resize: vertical;
+}
+
+.announce button {
+  border: 0;
+  background: linear-gradient(135deg, #6919b9, #9d3cff);
+  color: white;
+  border-radius: 8px;
+  padding: 10px 15px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.status {
+  font-size: 10px;
+  color: #8f7b99;
+  margin-left: 8px;
+}
+
+@media(max-width:800px) {
+  .sidebar {
+    display: none;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
 </style>
 </head>
+
 <body>
-<div class="particles"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
 
-<nav>
-<div class="logo">VAL<span>Ø</span>R</div>
-<div class="links"><a href="#about">ABOUT</a><a href="#leadership">LEADERSHIP</a><a href="#tiers">TIERS</a><a href="#members">MEMBERS</a><a href="#rules">RULES</a></div>
-<a class="navbtn" href="https://discord.gg/xractgTxg" target="_blank">DISCORD</a>
-</nav>
+<div class="app">
 
-<header class="hero">
-<div class="heroIn">
-<div class="badge">ROBLOX RIVALS • KNIFE MAIN • COMPETITIVE</div>
-<h1>VALØR</h1>
-<p>VALØR is a competitive Roblox RIVALS clan built around knife mains, mechanical skill, teamwork and competitive progression.</p>
-<div class="buttons"><a class="btn primary" href="https://www.roblox.com/games/17625359962/RIVALS" target="_blank">PLAY RIVALS</a><a class="btn purple" href="https://discord.gg/xractgTxg" target="_blank">JOIN VALØR</a></div>
+<aside class="sidebar">
+
+  <div class="brand">
+    <div class="logo">V</div>
+    <div>
+      <b>VALØR</b>
+      <small>Tier Infinity • Official Hub</small>
+    </div>
+  </div>
+
+  <div class="search">
+    ⌕ &nbsp; Search Hub...
+  </div>
+
+  <div class="label">COMPETITIVE</div>
+
+  <div class="nav active">⚔ War Room</div>
+  <div class="nav">♜ Tier Ranking</div>
+  <div class="nav">♙ Staff & Roster</div>
+
+  <div class="label">RULES & KNOWLEDGE</div>
+
+  <div class="nav">▤ Rules & Codex</div>
+  <div class="nav">? FAQ Knowledge</div>
+
+  <div class="label">MEDIA & INTEL</div>
+
+  <div class="nav">▦ Media Vault</div>
+  <div class="nav">♧ Intel Feed</div>
+
+</aside>
+
+<main class="main">
+
+  <div class="top">
+
+    <div class="command">
+      ♧ Command Center
+    </div>
+
+    <button class="discord" onclick="joinDiscord()">
+      ◉ Join VALØR Discord
+    </button>
+
+  </div>
+
+  <section class="hero">
+
+    <div class="pills">
+
+      <span class="pill green">
+        ● DISCORD CONNECTED
+      </span>
+
+      <span class="pill">
+        ROBLOX KNIFE CREW
+      </span>
+
+      <span class="pill">
+        TIER INFINITY — T5
+      </span>
+
+    </div>
+
+    <h1>VALØR COMMAND CENTER</h1>
+
+    <p>
+      Official competitive hub — announcements from Discord can appear here automatically.
+    </p>
+
+  </section>
+
+
+  <div class="grid">
+
+    <section class="card">
+
+      <div class="head">
+        <b>⚔ WAR ROOM HIGHLIGHT</b>
+        <span class="tag">ONGOING</span>
+      </div>
+
+      <div class="score">
+
+        <div>
+          VALØR
+          <strong>8</strong>
+        </div>
+
+        <div class="vs">
+          VS
+        </div>
+
+        <div>
+          ECLIPSE ROYALE
+          <strong>7</strong>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <section class="card">
+
+      <div class="head">
+        <b>♨ LATEST INTEL & BROADCAST</b>
+        <span class="tag">DISCORD</span>
+      </div>
+
+      <div id="news">
+
+        <div class="news">
+
+          <small>
+            14 August 2026 • Valor
+          </small>
+
+          <h3>
+            🏆 VALØR Grand Summer Knife Invitational Announced!
+          </h3>
+
+          <p>
+            All divisions must submit their 5-player rosters.
+            Prize pool includes Roblox UGC items, Discord Nitro
+            and Tier promotion opportunities.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </div>
+
+
+  <section class="card announce">
+
+    <div class="head">
+
+      <b>📢 STAFF ANNOUNCEMENT</b>
+
+      <span class="tag">
+        DISCORD SYNC
+      </span>
+
+    </div>
+
+    <input
+      id="title"
+      placeholder="Announcement title"
+    >
+
+    <textarea
+      id="message"
+      placeholder="Write the announcement..."
+    ></textarea>
+
+    <button onclick="sendAnnouncement()">
+      Post to Discord
+    </button>
+
+    <span
+      class="status"
+      id="status"
+    ></span>
+
+  </section>
+
+</main>
+
 </div>
-</header>
-
-<section id="about"><div class="container">
-<div class="label">01 — OVERVIEW</div><h2 class="title">BUILT DIFFERENT.</h2>
-<div class="grid4">
-<div class="stat"><b>220</b><small>MEMBERS</small></div><div class="stat"><b>T∞</b><small>HIGHEST TIER</small></div><div class="stat"><b>KNIFE</b><small>MAIN STYLE</small></div><div class="stat"><b>RIVALS</b><small>MAIN GAME</small></div>
-</div>
-<div class="cards">
-<div class="card"><div class="icon">K</div><h3>KNIFE MAIN</h3><p>VALØR specializes in aggressive knife gameplay, close-range fights and mechanical skill.</p></div>
-<div class="card"><div class="icon">T</div><h3>COMPETITIVE TIERS</h3><p>Players progress through a tier system from T5 to the legendary T∞.</p></div>
-<div class="card"><div class="icon">V</div><h3>COMMUNITY</h3><p>A growing RIVALS community for matches, tryouts, improvement and competition.</p></div>
-</div></div></section>
-
-<section id="leadership"><div class="container"><div class="label">02 — LEADERSHIP</div><h2 class="title">THE PEOPLE BEHIND VALØR.</h2>
-<div class="leaders">
-<div class="leader"><div class="top"><div class="avatar">V</div><div><b>VALØR</b><div class="role">OWNER</div></div></div><p class="desc">Owner of VALØR. Leads the clan, community and competitive direction.</p></div>
-<div class="leader"><div class="top"><div class="avatar">G</div><div><b>VALØR | GerrardSUSNPC</b><div class="role">CO-OWNER</div></div></div><p class="desc">Co-owner helping manage the community, members, events and competitive side.</p></div>
-</div></div></section>
-
-<section id="tiers"><div class="container"><div class="label">03 — RANKING</div><h2 class="title">VALØR TIER SYSTEM.</h2>
-<div class="tiers"><div class="tier"><strong>T5</strong><span>ENTRY</span></div><div class="tier"><strong>T4</strong><span>SKILLED</span></div><div class="tier"><strong>T3</strong><span>ELITE</span></div><div class="tier"><strong>T2</strong><span>EXPERT</span></div><div class="tier"><strong>T1</strong><span>MASTER</span></div><div class="tier"><strong>T∞</strong><span>LEGEND</span></div></div></div></section>
-
-<section id="members"><div class="container"><div class="label">04 — COMMUNITY</div><h2 class="title">RECENTLY JOINED.</h2>
-<div class="recent">
-<div class="recentRow"><div class="member"><span class="online"></span><div><b>PlayerName</b><small style="display:block;color:#666">New VALØR member</small></div></div><span class="time">2 MIN AGO</span></div>
-<div class="recentRow"><div class="member"><span class="online"></span><div><b>RivalPlayer</b><small style="display:block;color:#666">New VALØR member</small></div></div><span class="time">15 MIN AGO</span></div>
-<div class="recentRow"><div class="member"><span class="online"></span><div><b>NewMember</b><small style="display:block;color:#666">New VALØR member</small></div></div><span class="time">1 HR AGO</span></div>
-<div class="recentRow"><div class="member"><span class="online"></span><div><b>VALORPlayer</b><small style="display:block;color:#666">New VALØR member</small></div></div><span class="time">2 HRS AGO</span></div>
-</div></div></section>
-
-<section id="rules"><div class="container"><div class="label">05 — STANDARDS</div><h2 class="title">CLAN RULES.</h2><div class="rules">
-<div class="rule"><b>01</b>Respect members and opponents.</div><div class="rule"><b>02</b>No cheating, exploiting or unfair gameplay.</div><div class="rule"><b>03</b>No unnecessary drama or toxicity.</div><div class="rule"><b>04</b>Represent VALØR properly.</div><div class="rule"><b>05</b>Follow staff decisions and help the community grow.</div>
-</div></div></section>
 
 
-
-<section id="record"><div class="container">
-<div class="label">06 — COMPETITIVE RECORD</div>
-<h2 class="title">32 WARS. 32 WINS.</h2>
-<div class="recordGrid">
-<div class="recordMain">
-<div class="recordNumber">32<span>/32</span></div>
-<div class="recordTitle">CLAN WARS WON</div>
-<p>VALØR has completed <b>32 clan wars</b> and won every single one. The goal isn't just to have a record — it's to keep improving, competing and growing together.</p>
-<div class="recordBar"><div></div></div>
-<div class="recordStats"><div><b>32</b><small>WINS</small></div><div><b>0</b><small>LOSSES</small></div><div><b>100%</b><small>WIN RATE</small></div></div>
-</div>
-<div class="recordSide">
-<div class="miniStat"><span>⚔</span><div><b>UNDEFEATED</b><small>32–0 clan war record</small></div></div>
-<div class="miniStat"><span>↑</span><div><b>KEEP GROWING</b><small>More players. More competition. More wins.</small></div></div>
-<div class="miniStat"><span>∞</span><div><b>THE NEXT LEVEL</b><small>Our goal is to build VALØR into a stronger competitive community.</small></div></div>
-</div>
-</div>
-<div class="growBox">
-<div><div class="label">HELP US GROW</div><h3>WANT TO BE PART OF THE NEXT WIN?</h3><p>Join VALØR, bring your best RIVALS gameplay, meet the community and help us push the clan even further.</p></div>
-<a class="btn purple" href="https://discord.gg/xractgTxg" target="_blank">JOIN THE COMMUNITY</a>
-</div>
-</div></section>
-<section id="faq"><div class="container">
-<div class="label">07 — FAQ</div>
-<h2 class="title">WHY VALØR?</h2>
-<div class="faq">
-<div class="faqItem"><button>Why should I join VALØR?<span>+</span></button><div class="faqAnswer">VALØR is a competitive RIVALS clan where you can meet skilled players, improve your mechanics, and participate in clan activities.</div></div>
-<div class="faqItem"><button>What type of players does VALØR want?<span>+</span></button><div class="faqAnswer">We want active, skilled and respectful players who enjoy competitive RIVALS and are willing to improve.</div></div>
-<div class="faqItem"><button>What is the VALØR tier system?<span>+</span></button><div class="faqAnswer">Players can progress from T5 → T4 → T3 → T2 → T1 → T∞, with T∞ being the highest legendary tier.</div></div>
-<div class="faqItem"><button>Is VALØR only for knife mains?<span>+</span></button><div class="faqAnswer">Knife gameplay is a major part of VALØR, but the clan is open to players who enjoy competitive RIVALS and want to contribute.</div></div>
-<div class="faqItem"><button>How can I join VALØR?<span>+</span></button><div class="faqAnswer">Join the VALØR Discord, read the clan information, and follow the current recruitment or tryout instructions.</div></div>
-</div></div></section>
-
-
-<section id="developers"><div class="container">
-<div class="label">09 — DEVELOPMENT TEAM</div>
-<h2 class="title">THE PEOPLE WHO BUILT VALØR.</h2>
-<p class="devIntro">VALØR is supported by a team of developers and contributors who help build, maintain and improve the website and community.</p>
-<div class="devGrid">
-<div class="devCard featured"><div class="devAvatar">ME</div><div><b>VALOR_ME</b><span>WEBSITE DEV</span></div><p>Website developer helping build and maintain the VALØR website.</p></div>
-<div class="devCard"><div class="devAvatar">N</div><div><b>Nolan</b><span>DEVELOPER</span></div><p>Developer and contributor supporting VALØR projects.</p></div>
-<div class="devCard"><div class="devAvatar">V</div><div><b>VALOR</b><span>DEVELOPER</span></div><p>Core VALØR contributor.</p></div>
-<div class="devCard"><div class="devAvatar">B</div><div><b>ban_danil</b><span>DEVELOPER</span></div><p>Community development contributor.</p></div>
-<div class="devCard"><div class="devAvatar">B</div><div><b>bleed</b><span>DEVELOPER</span></div><p>Development and community contributor.</p></div>
-<div class="devCard"><div class="devAvatar">T</div><div><b>TURTLE</b><span>DEVELOPER</span></div><p>Development contributor.</p></div>
-<div class="devCard"><div class="devAvatar">G</div><div><b>gerrardsusnpc</b><span>DEVELOPER</span></div><p>VALØR development contributor.</p></div>
-<div class="devCard"><div class="devAvatar">R</div><div><b>rip.spec0r</b><span>DEVELOPER</span></div><p>Development contributor.</p></div>
-<div class="devCard"><div class="devAvatar">V</div><div><b>Vzx</b><span>CONTRIBUTOR</span></div><p>Contributor helping with VALØR projects.</p></div>
-<div class="devCard"><div class="devAvatar">00</div><div><b>00yvane</b><span>CONTRIBUTOR</span></div><p>Contributor helping the VALØR community.</p></div>
-</div></div></section>
-<section id="donate"><div class="container">
-<div class="label">08 — SUPPORT VALØR</div>
-<h2 class="title">HELP US GROW.</h2>
-<div class="donateBox">
-<div class="donateIcon">♥</div>
-<div class="donateText">
-<h3>SUPPORT THE CLAN</h3>
-<p>Want to help VALØR become bigger and stronger? Donations can help support clan events, community activities, graphics, giveaways and future projects.</p>
-<div class="donateNote">Every contribution helps. Thank you for supporting VALØR.</div>
-</div>
-<a class="btn purple" href="https://discord.gg/xractgTxg" target="_blank">DONATE / CONTACT</a>
-</div>
-</div></section>
-<section><div class="cta"><h2>READY FOR VALØR?</h2><p>Join the Discord and become part of the RIVALS knife-main community.</p><a class="btn purple" href="https://discord.gg/xractgTxg" target="_blank">JOIN VALØR</a></div></section>
-<footer>© 2026 <b>VALØR</b> — Roblox RIVALS Clan • 220 Members</footer>
 <script>
-document.querySelectorAll(".faqItem button").forEach(btn=>{
-  btn.addEventListener("click",()=>{
-    const item=btn.parentElement;
-    document.querySelectorAll(".faqItem").forEach(x=>{if(x!==item)x.classList.remove("open")});
-    item.classList.toggle("open");
-  });
-});
+
+const API = "http://localhost:3000";
+
+
+function joinDiscord() {
+
+  window.open(
+    "YOUR_DISCORD_INVITE_URL",
+    "_blank"
+  );
+
+}
+
+
+async function sendAnnouncement() {
+
+  const title =
+    document.getElementById("title").value.trim();
+
+  const message =
+    document.getElementById("message").value.trim();
+
+  const status =
+    document.getElementById("status");
+
+
+  if (!title || !message) {
+
+    status.textContent =
+      "Add a title and message.";
+
+    return;
+
+  }
+
+
+  status.textContent =
+    "Sending...";
+
+
+  try {
+
+    const response =
+      await fetch(
+        API + "/api/announcement",
+        {
+          method: "POST",
+
+          headers: {
+            "Content-Type":
+              "application/json"
+          },
+
+          body: JSON.stringify({
+            title,
+            message
+          })
+        }
+      );
+
+
+    const data =
+      await response.json();
+
+
+    status.textContent =
+      data.ok
+        ? "Posted to Discord!"
+        : "Could not post.";
+
+
+  } catch(error) {
+
+    status.textContent =
+      "Backend not running.";
+
+  }
+
+}
+
+
+async function loadAnnouncements() {
+
+  try {
+
+    const response =
+      await fetch(
+        API + "/api/announcements"
+      );
+
+    const data =
+      await response.json();
+
+
+    if (!data.length)
+      return;
+
+
+    document.getElementById("news").innerHTML =
+      data.slice(0,5)
+      .map(n => `
+
+        <div class="news">
+
+          <small>
+            ${n.date} • ${n.author}
+          </small>
+
+          <h3>
+            ${escapeHtml(n.title)}
+          </h3>
+
+          <p>
+            ${escapeHtml(n.message)}
+          </p>
+
+        </div>
+
+      `)
+      .join("");
+
+
+  } catch(error) {}
+
+}
+
+
+function escapeHtml(text) {
+
+  return text.replace(
+    /[&<>"']/g,
+    char => ({
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#039;"
+    }[char])
+  );
+
+}
+
+
+loadAnnouncements();
+
 </script>
+
 </body>
 </html>
